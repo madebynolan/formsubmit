@@ -294,15 +294,6 @@ audio {
 
 /* ---------------------------------------- */
 
-.section2 {
-  display: flex;
-}
-
-.leftside {
-  width: 50%;
-  padding-right: 6px;
-}
-
 .title {
   display: flex;
   justify-content: space-between;
@@ -312,6 +303,30 @@ audio {
 
 .title > * {
   flex: 0;
+}
+
+.title h2 {
+  padding-left: 2px;
+}
+
+.title h4 {
+  padding: 0 3.4px;
+  font-style: italic;
+}
+
+.aboutme span {
+  display: none;
+}
+
+/* ---------------------------------------- */
+
+.section2 {
+  display: flex;
+}
+
+.leftside {
+  width: 50%;
+  padding-right: 6px;
 }
 
 .age {
@@ -575,7 +590,7 @@ button.next {
 
 .recent-inspo {
   border: solid;
-  padding: 12px;
+  padding: 6px 12px;
 }
 
 .recent-inspo iframe {
@@ -674,6 +689,24 @@ footer {
   .aboutme {
     width: 100%; /* Ensure elements inside leftside also take full width */
     margin-bottom: 12px;
+  }
+
+  .title {
+    flex-wrap: wrap;
+  }
+
+  .title > * {
+    min-width: 100%;
+  }
+
+  .title h2 {
+    margin-bottom: 2px;
+  }
+
+  .aboutme span {
+    display: block;
+    padding-left: 3px;
+    margin-top: 4px;
   }
 
 }
