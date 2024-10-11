@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width">
+    <title>Retorklub</title>
+
+  </head>
+
+  <body>
+    
+    <header><img id="logo" src="images/logo.png" height="50px"></header>
+
+    <section class="section1">
+
+      <div class="a">
+        <audio id="audioPlayer" controls loop>
+            <source src="audio/let-it-all-out.wav" type="audio/wav">
+        </audio>
+        <p id="pause" onclick="togglePlayPause()">&#128362;</p>
+        <img id="recordimage" src="images/record.png" width="90%">
+    </div>
+    
+      <script>
+        function togglePlayPause() {
+          const audioPlayer = document.getElementById('audioPlayer');
+          const pauseIcon = document.getElementById('pause');
+      
+          if (audioPlayer.paused) {
+              audioPlayer.play();
+              pauseIcon.innerHTML = "&#128360;&thinsp;";
+          } else {
+              audioPlayer.pause();
+              pauseIcon.innerHTML = "&#128362;"; 
+          }
+        }
+      </script>
+
+      <script>
+        function togglePlayPause() {
+          const audioPlayer = document.getElementById('audioPlayer');
+          const pauseIcon = document.getElementById('pause');
+          const recordImage = document.getElementById('recordimage');
+
+          if (audioPlayer.paused) {
+              audioPlayer.play();
+              pauseIcon.innerHTML = "&#128360;&thinsp;";
+              recordImage.style.animationPlayState = 'running'; 
+          } else {
+              audioPlayer.pause();
+              pauseIcon.innerHTML = "&#128362;"; 
+              recordImage.style.animationPlayState = 'paused'; 
+          }
+        }
+
+      </script>
+
+      <div class="b">
+        <div class="songdetails">
+          <h4 id="date">Oct 24, 2024</h4>
+          <h2 id="latestrelease">Latest Release</h2>
+          <p><span>-------</span><span>-------</span><span>----------</span><span id="span1">-------</span><span id="span2">-------</span></p>
+          <div class="container">
+            <div class="scroll">
+              <div class="RightToLeft">
+                <h1>let it all out &nbsp; &nbsp; &nbsp;</h1>
+                <h1>let it all out &nbsp; &nbsp; &nbsp;</h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="download">
+            <a href="audio/let-it-all-out.wav" download class="dlbutton">
+              <img src="images/download.png" alt="Download Icon">
+              <span>Download</span>
+            </a>
+            <div class="coin" id="coinElement" onclick="openMe()">
+              <img src="images/coin.gif" alt="Coin">
+            </div>
+          </div>
+          
+          <dialog id="dialogBox">
+            <button id="closeButton">&times;</button>
+            <img src="images/coin.gif" alt="coin">
+            <h2>Thank You!</h2>
+            <p>I'm always going to keep my music available for free to my supporters.
+              If you enjoy it enough that you feel like tipping, go ahead.
+              I appreciate any and all donations.
+            </p>
+            <a href="https://paypal.me/SoundsOfSeventeen">
+              <button id="paypal">
+                <img src="images/PayPal_logo.svg">
+              </button>
+            </a>
+          </dialog>
+          
+          <script>
+            const dialog = document.getElementById('dialogBox');
+            const closeButton = document.getElementById('closeButton');
+            const coinElement = document.getElementById('coinElement');
+          
+            function openMe() {
+              dialog.showModal();
+              coinElement.style.display = 'none';
+            }
+          
+            closeButton.addEventListener('click', function() {
+              dialog.close();
+              coinElement.style.display = 'block';
+            });
+          </script>
+        
+      </div>
+
+    </section>
+
+    <div>
+      <h2 class="title">Retroklub</h2>
+    </div>
+
+    <section class="section2">
+      <div class="leftside">
+
+        
+
+        <div class="age">
+          <h4>Age:</h4>
+          <div id="agenumber">24</div>
+          <div class="agecounter">
+            <h4 id="nextage">Next age:</h4>
+            <h4 id="timer">Calculating...</h4>
+          </div>
+        </div>
+
+        <script>
+          let currentAge = parseInt(document.getElementById("agenumber").innerText);
+        
+          function getPSTTime() {
+              let now = new Date();
+              let utcOffset = now.getTimezoneOffset();
+              let pstOffset = 480;
+              let pstTime = new Date(now.getTime() + (utcOffset - pstOffset) * 60000);
+              return pstTime;
+          }
+          
+          function updateCountdown() {
+              const now = getPSTTime();
+              const birthday = new Date(now.getFullYear(), 9, 24);
+              
+              if (now > birthday) {
+                  birthday.setFullYear(now.getFullYear() + 1);
+              }
+              
+              const diff = birthday - now;
+        
+              if (diff <= 0) {
+                  document.getElementById("timer").innerText = "Today";
+        
+                  if (document.getElementById("agenumber").innerText == currentAge) {
+                      currentAge += 1;
+                      document.getElementById("agenumber").innerText = currentAge;
+                  }
+              } else {
+                  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+          
+                  document.getElementById("timer").innerText = `${days}d ${hours}hr ${minutes}min ${seconds}s`;
+              }
+          }
+          
+          setInterval(updateCountdown, 1000);
+          
+          updateCountdown();
+        </script>
+
+        <div class="aboutme">
+        <p>I’ve been an artist my entire life, but my music journey began in 2017,
+          shortly after losing a close friend to suicide. At the time, I had no
+          idea how much music was going to influence my life. I’ve made so many
+          great friends, connections, earned a decent living, and had opportunities
+          I never thought possible.</p>
+
+        <p>Until 2024, I worked under the alias “MMXVII” but I realized the style
+          I become known for wasn’t true to me. So I switched entirely to electronic music,
+          focusing on retro game inspired sounds mixed with hard bass, and sometimes
+          vocals by myself or other artists.</p>
+        </div>
+        </div>
+
+    <div class="rightside">
+
+      <div class="catalogcontainer">
+        <div class="cataloglist">
+          <input type="checkbox" id="dropdown-toggle3">
+          
+          <label class="button2" for="dropdown-toggle3">
+            <h2 id="catalogtext">Catalog</h2>
+            <h2 id="triangle">&#9660;</h2>
+          </label>
+        
+          <div class="dropdown-content3-wrapper">
+            
+
+            <div class="dropdown-content3">
+              <div class="card scrolling-animation" id="card1">
+                  <h2>ryuk</h2>
+                  <p>140bpm&nbsp;&nbsp;|&nbsp;&nbsp;A min</p>
+                  <p><a href="audio/ryuk.wav">Download</a></p>
+              </div>
+              <div class="card scrolling-animation" id="card2">
+                  <h2>elimination</h2>
+                  <p>140bpm&nbsp;&nbsp;|&nbsp;&nbsp;A min</p>
+                  <p><a href="audio/elimination.wav">Download</a></p>
+              </div>
+              <div class="card scrolling-animation" id="card3">
+                  <div class="RightToLeft2">
+                      <h2>a nice calm fresh mint &nbsp;&nbsp;&nbsp;</h2>
+                      <h2>a nice calm fresh mint &nbsp;&nbsp;&nbsp;</h2>
+                  </div>
+                  <p>140bpm&nbsp;&nbsp;|&nbsp;&nbsp;A min</p>
+                  <p><a href="audio/elimination.wav">Download</a></p>
+              </div>
+            </div>
+
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+              // Select all cards that have the scrolling animation class
+              const animatedCards = document.querySelectorAll('.card.scrolling-animation');
+              
+              // Create an intersection observer
+              const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                  const animatedElement = entry.target.querySelector('.RightToLeft2');
+                  if (entry.isIntersecting && animatedElement) {
+                    // Start animation if the card is in view
+                    animatedElement.style.animationPlayState = 'running';
+                  } else if (animatedElement) {
+                    // Pause animation if the card is out of view
+                    animatedElement.style.animationPlayState = 'paused';
+                  }
+                });
+              });
+
+              // Observe each card
+              animatedCards.forEach(card => observer.observe(card));
+            });
+
+            </script>
+          
+            
+            <button class="prev" onclick="moveCards(-1)">&#10094;</button>
+            <button class="next" onclick="moveCards(1)">&#10095;</button>
+            
+        </div>
+        
+
+        <script>
+          function moveCards(direction) {
+            const container = document.querySelector('.dropdown-content3');
+            const cardWidth = container.querySelector('.card').offsetWidth;
+            container.scrollBy({
+              left: cardWidth * direction,
+              behavior: 'smooth'
+            });
+          }
+
+        </script>
+        
+
+        </div>
+      </div>
+
+      <div class="discocontainer">
+        <div class="discolist">
+          <input type="checkbox" id="dropdown-toggle">
+          
+          <label class="button2" for="dropdown-toggle">
+            <h2 id="discotext">Disco Lists</h2>
+            <h2 id="triangle">&#9660;</h2>
+          </label>
+        
+          <div class="dropdown-content">
+            <div class="li"><a class="lia" href="https://s.disco.ac/innhhtpbzjeo" target="_blank">Retro Fights & Encounters</a></div>
+            <div class="li">List 2</div>
+            <div class="li">List 3</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contactcontainer">
+        <div class="contact">
+          <input type="checkbox" id="dropdown-toggle2">
+
+          <label class="button2" for="dropdown-toggle2">
+            <h2 id="contacttext">Contact</h2>
+            <h2 id="triangle">&#9660;</h2>
+          </label>
+        
+          <div class="dropdown-content2">
+            <div class="form-container">
+              <form class="form" action="action_page.php">
+            
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+            
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Your email address..." required>
+            
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                  <option value="australia">Licensing</option>
+                  <option value="canada">Collaborations</option>
+                  <option value="canada">Mixing & Master</option>
+                  <option value="usa">General Inquires</option>
+                </select>
+            
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write something.." style="height:150px; resize: none;" required></textarea>
+            
+                <input type="submit" value="Submit">
+            
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recent-inspo">
+        <h2>Recent Inspo</h2>
+        <iframe width="100%" height="150" scrolling="no" frameborder="no" src="https://tinyurl.com/6cfcaabd"></iframe>
+        <iframe width="100%" height="20" scrolling="no" frameborder="no" src="https://tinyurl.com/55j5knj4"></iframe>
+        <iframe width="100%" height="20" scrolling="no" frameborder="no" src="https://tinyurl.com/m6vxdmuv"></iframe>
+      </div>
+      </div>
+
+    </div>
+  </section>
+    <footer>
+        <p id="lastupdated">Last Updated : 09.10.24</p>
+        <div class="footer-buttons">
+          <p id="early"><a href="#" target="_blank">Early Access Club</a></p>
+          <p id="split">&emsp;|&emsp;</p>
+          <p id="report"><a href="#" target="_blank">Report a problem</a></p>
+        </div>
+    </footer>
+
+  </body>
+
+</html>
